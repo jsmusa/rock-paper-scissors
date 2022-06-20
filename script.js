@@ -1,18 +1,38 @@
+const playBox = document.getElementById('player-box');
 const rpsButton = document.getElementsByClassName('rps-button');
 const scoreBox = document.getElementById('score-box');
+const playerScoreBox = document.querySelector('player-score-box');
+const computerScoreBox = document.querySelector('computer-score-box');
+let pScore = document.querySelector('.player-score');
+let cScore = document.querySelector('.computer-score');
+let playerScore = 0;
+let computerScore = 0;
 
 // use loop since rpsButton is a node list
 for (button of rpsButton) {
-    button.addEventListener('click',playOneRound);
+    button.addEventListener('click',playGame);
 }
 
-// plays one round of rps
-function playOneRound(e) {
-    if (e.target.id !== '') {
+// plays game of rps
+function playGame(e) {
+    if (playerScore < 5 && computerScore < 5) {
         let move = e.target.id;
         let computerMove = computerPlay();
-        compare(move,computerMove);
-    }  
+        let result = compare(move,computerMove);
+        console.log(move, computerMove, result);
+        if (result === 'victory') {
+            playerScore++;
+            pScore.textContent = `${playerScore}`;
+            playerScoreBox.appendChild(pScore);
+        } else if (result === 'defeat') {
+            computerScore++;
+            cScore.textContent = `${computerScore}`;
+            computerScoreBox.appendChild(cScore);
+        } 
+        console.log(playerScore,computerScore);
+
+    }
+        // playBox.setAttribute ('style','display:none');
 }
 //computer move: get random integer among 0-2,
 //if random int equals 0 computer move is rock, if 1 move is paper, if 2 move is scissors
@@ -38,19 +58,17 @@ function getRandomInt (max) {
 //compares playerSelection and computerSelection to see who wins
 
 function compare (playerSelection,computerSelection) {
-    console.log(playerSelection);
-    console.log(computerSelection);
     if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
-        console.log("defeat");//`Defeat! Your ${playerSelection} is no match against ${computerSelection}.`;
+        return("defeat");//`Defeat! Your ${playerSelection} is no match against ${computerSelection}.`;
     } 
     else if (computerSelection === "rock" && playerSelection === "paper" || computerSelection === "paper" && playerSelection === "scissors" || computerSelection === "scissors" && playerSelection === "rock") {
-        console.log ("victory");//`Victory! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} destroys ${computerSelection}.`;
+        return("victory");//`Victory! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase()} destroys ${computerSelection}.`;
     }
     else if (playerSelection === computerSelection){
-        console.log("tie");//`No winner! You've both used ${playerSelection}.`;
+        return("tie");//`No winner! You've both used ${playerSelection}.`;
     }
     else {
-    console.log("hmm"); //"Please enter your move.";
+    return("hmm"); //"Please enter your move.";
     }
 }
 
@@ -59,32 +77,3 @@ function compare (playerSelection,computerSelection) {
 // multiple rounds of rps: do a round of rps until one wins 5
 // use loops
 
-function game () {
-    let playerScore = 0,
-        computerScore = 0;
-    
-    do {
-        playerMove = prompt("Enter your move:","");
-        if (playerMove === null) {
-            return;
-        }
-        computerMove = computerPlay();
-        result = playOneRound(playerMove,computerMove);
-        switch (result) {
-            case "victory": playerScore++;
-                break;
-            case "defeat": computerScore++;
-                break;
-            case "tie": 
-        }
-        console.log(computerMove,result,playerScore,computerScore);
-    }
-    while (playerScore<5 && computerScore<5);
-    
-    if (playerScore === 5) {
-        return "Victory!";
-    }
-    else if (computerScore === 5)
-        return "Defeat....";
-}
-// console.log(game());
