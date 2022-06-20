@@ -3,9 +3,10 @@ const rpsButton = document.getElementsByClassName('rps-button');
 const scoreBox = document.getElementById('score-box');
 const playerScoreBox = document.querySelector('.player-score-box');
 const computerScoreBox = document.querySelector('.computer-score-box');
-const result = document.getElementById('result');
+const resultBox = document.getElementById('result-box');
 const playerResult = document.createElement('div');
 const computerResult = document.createElement('div');
+const roundResult = document.createElement('div');
 let pScore = document.createElement('div');
 let cScore = document.createElement('div');
 let playerScore = 0;
@@ -27,14 +28,14 @@ function playGame(e) {
         let computerMove = computerPlay();
         let result = compare(move,computerMove);
         console.log(move, computerMove, result);
-        showResult(move,computerMove);
         if (result === 'victory') {
             playerScore++;
             scoreTally(playerScore,computerScore);
         } else if (result === 'defeat') {
             computerScore++;
             scoreTally(playerScore,computerScore);
-        } 
+        }
+        showResult(move,computerMove,result);
         console.log(playerScore,computerScore);
     }
         // playBox.setAttribute ('style','display:none');
@@ -77,10 +78,16 @@ function compare (playerSelection,computerSelection) {
 }
 
 // appends playerMove and computerMove onto resultBox
-function showResult(playerMove,computerMove) {
-    playerResult.textContent = 'You play ' + playerMove + '.';
-    computerResult.textContent = 'Opponent plays '+ computerMove + '.';
-    result.append(playerResult,computerResult);
+function showResult(playerMove,computerMove,result) {
+    if (playerScore<5 && computerScore<5) {
+        playerResult.textContent = 'You play ' + playerMove + '.';
+        computerResult.textContent = 'Opponent plays '+ computerMove + '.';
+        roundResult.textContent = result;
+        resultBox.append(playerResult,computerResult,roundResult);
+    } else if (playerScore === 5) {
+        roundResult.textContent = result;
+        resultBox.appendChild(roundResult);
+    }
 }
 
 // appends score of both player and computer onto scoreBox 
