@@ -76,12 +76,14 @@ function compare (playerSelection,computerSelection) {
     }
 }
 
+// appends playerMove and computerMove onto resultBox
 function showResult(playerMove,computerMove) {
     playerResult.textContent = 'You play ' + playerMove + '.';
     computerResult.textContent = 'Opponent plays '+ computerMove + '.';
     result.append(playerResult,computerResult);
 }
 
+// appends score of both player and computer onto scoreBox 
 function scoreTally(playerScore, computerScore) {
     pScore.textContent = `${playerScore}`;
     playerScoreBox.appendChild(pScore);
