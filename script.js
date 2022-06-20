@@ -30,12 +30,10 @@ function playGame(e) {
         showResult(move,computerMove);
         if (result === 'victory') {
             playerScore++;
-            pScore.textContent = `${playerScore}`;
-            playerScoreBox.appendChild(pScore);
+            scoreTally(playerScore,computerScore);
         } else if (result === 'defeat') {
             computerScore++;
-            cScore.textContent = `${computerScore}`;
-            computerScoreBox.appendChild(cScore);
+            scoreTally(playerScore,computerScore);
         } 
         console.log(playerScore,computerScore);
     }
@@ -82,4 +80,11 @@ function showResult(playerMove,computerMove) {
     playerResult.textContent = 'You play ' + playerMove + '.';
     computerResult.textContent = 'Opponent plays '+ computerMove + '.';
     result.append(playerResult,computerResult);
+}
+
+function scoreTally(playerScore, computerScore) {
+    pScore.textContent = `${playerScore}`;
+    playerScoreBox.appendChild(pScore);
+    cScore.textContent = `${computerScore}`;
+    computerScoreBox.appendChild(cScore); 
 }
