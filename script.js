@@ -4,6 +4,8 @@ const scoreBox = document.getElementById('score-box');
 const playerScoreBox = document.querySelector('.player-score-box');
 const computerScoreBox = document.querySelector('.computer-score-box');
 const result = document.getElementById('result');
+const playerResult = document.createElement('div');
+const computerResult = document.createElement('div');
 let pScore = document.createElement('div');
 let cScore = document.createElement('div');
 let playerScore = 0;
@@ -77,9 +79,6 @@ function compare (playerSelection,computerSelection) {
 }
 
 function showResult(playerMove,computerMove) {
-    const playerResult = document.createElement('div');
-    const computerResult = document.createElement('div');
-
     playerResult.textContent = 'You play ' + playerMove + '.';
     computerResult.textContent = 'Opponent plays '+ computerMove + '.';
     result.append(playerResult,computerResult);
