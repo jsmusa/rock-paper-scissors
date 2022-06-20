@@ -1,12 +1,17 @@
 const playBox = document.getElementById('player-box');
 const rpsButton = document.getElementsByClassName('rps-button');
 const scoreBox = document.getElementById('score-box');
-const playerScoreBox = document.querySelector('player-score-box');
-const computerScoreBox = document.querySelector('computer-score-box');
-let pScore = document.querySelector('.player-score');
-let cScore = document.querySelector('.computer-score');
+const playerScoreBox = document.querySelector('.player-score-box');
+const computerScoreBox = document.querySelector('.computer-score-box');
+const result = document.getElementById('result');
+let pScore = document.createElement('div');
+let cScore = document.createElement('div');
 let playerScore = 0;
 let computerScore = 0;
+// console.log(playerScoreBox,computerScoreBox);
+
+pScore.className = 'player-score';
+cScore.className = 'computer-score';
 
 // use loop since rpsButton is a node list
 for (button of rpsButton) {
@@ -20,6 +25,7 @@ function playGame(e) {
         let computerMove = computerPlay();
         let result = compare(move,computerMove);
         console.log(move, computerMove, result);
+        showResult(move,computerMove);
         if (result === 'victory') {
             playerScore++;
             pScore.textContent = `${playerScore}`;
@@ -30,7 +36,6 @@ function playGame(e) {
             computerScoreBox.appendChild(cScore);
         } 
         console.log(playerScore,computerScore);
-
     }
         // playBox.setAttribute ('style','display:none');
 }
@@ -56,7 +61,6 @@ function getRandomInt (max) {
 }
 
 //compares playerSelection and computerSelection to see who wins
-
 function compare (playerSelection,computerSelection) {
     if (playerSelection === "rock" && computerSelection === "paper" || playerSelection === "paper" && computerSelection === "scissors" || playerSelection === "scissors" && computerSelection === "rock") {
         return("defeat");//`Defeat! Your ${playerSelection} is no match against ${computerSelection}.`;
@@ -72,8 +76,11 @@ function compare (playerSelection,computerSelection) {
     }
 }
 
-// console.log(playOneRound(playerMove,computerMove));
+function showResult(playerMove,computerMove) {
+    const playerResult = document.createElement('div');
+    const computerResult = document.createElement('div');
 
-// multiple rounds of rps: do a round of rps until one wins 5
-// use loops
-
+    playerResult.textContent = 'You play ' + playerMove + '.';
+    computerResult.textContent = 'Opponent plays '+ computerMove + '.';
+    result.append(playerResult,computerResult);
+}
