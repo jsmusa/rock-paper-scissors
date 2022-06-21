@@ -23,11 +23,12 @@
     background-color: #9370DB;
     border: 2px solid #000;
     border-radius: 12px;
-    height: 50px;
+    height: 125px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30%;
+    font-size: 32px;
 }
 
 .rps-button {
@@ -54,7 +55,12 @@
     border: 2px solid #000;
     border-radius: 10px;
     overflow: auto;
-    height: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .hover {

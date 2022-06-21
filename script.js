@@ -22,7 +22,6 @@ for (button of rpsButton) {
     button.addEventListener('click',playGame);
     button.addEventListener('mouseenter',(e) => {
         e.target.classList.add('hover');
-        console.log("hello");
     });
     button.addEventListener('mouseleave',(e) => {
         e.target.classList.remove('hover');
@@ -53,9 +52,6 @@ function playGame(e) {
         showResult(move,computerMove,result);
         console.log(playerScore,computerScore);
     } 
-    if (playerScore === 5 || computerScore === 5) {
-        addReset();
-    }
         // playBox.setAttribute ('style','display:none');
 }
 //computer move: get random integer among 0-2,
@@ -101,6 +97,9 @@ function showResult(playerMove,computerMove,result) {
         computerResult.textContent = 'Opponent plays '+ computerMove + '.';
         roundResult.textContent = result;
         resultBox.append(playerResult,computerResult,roundResult);
+        if (playerScore === 5 || computerScore === 5) {
+            addReset();
+        }
 }
 
 // appends score of both player and computer onto scoreBox 
