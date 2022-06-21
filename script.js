@@ -7,7 +7,7 @@ const resultBox = document.getElementById('result-box');
 const playerResult = document.createElement('div');
 const computerResult = document.createElement('div');
 const roundResult = document.createElement('div');
-const reset = document.createElement('button');
+const restart = document.createElement('button');
 let pScore = document.createElement('div');
 let cScore = document.createElement('div');
 let playerScore = 0;
@@ -21,6 +21,12 @@ cScore.className = 'computer-score';
 for (button of rpsButton) {
     button.addEventListener('click',playGame);
 }
+
+restart.addEventListener('click',() => {
+    playerScore = 0;
+    computerScore = 0;
+    scoreTally(playerScore,computerScore);
+});
 
 // plays game of rps
 function playGame(e) {
@@ -38,6 +44,9 @@ function playGame(e) {
         }
         showResult(move,computerMove,result);
         console.log(playerScore,computerScore);
+    } 
+    if (playerScore === 5 || computerScore === 5) {
+        addReset();
     }
         // playBox.setAttribute ('style','display:none');
 }
@@ -92,4 +101,10 @@ function scoreTally(playerScore, computerScore) {
     playerScoreBox.appendChild(pScore);
     cScore.textContent = `${computerScore}`;
     computerScoreBox.appendChild(cScore); 
+}
+
+// adds reset button
+function addReset() {
+    restart.textContent = 'Restart game';
+    resultBox.appendChild(restart);
 }
