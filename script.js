@@ -97,6 +97,7 @@ function showResult(playerMove,computerMove,result) {
         computerResult.textContent = 'Opponent plays '+ computerMove + '.';
         roundResult.textContent = result;
         resultBox.append(playerResult,computerResult,roundResult);
+        //adds reset button when either player or computer scores 5
         if (playerScore === 5 || computerScore === 5) {
             addReset();
         }
