@@ -26,6 +26,12 @@ for (button of rpsButton) {
     button.addEventListener('mouseleave',(e) => {
         e.target.classList.remove('hover');
     })
+    button.addEventListener('mousedown',(e) => {
+        e.target.classList.add('click');
+    })
+    button.addEventListener('mouseup',(e) => {
+        e.target.classList.remove('click');
+    })
 }
 
 restart.addEventListener('click',() => {
