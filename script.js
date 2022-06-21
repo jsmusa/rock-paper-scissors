@@ -20,12 +20,20 @@ cScore.className = 'computer-score';
 // use loop since rpsButton is a node list
 for (button of rpsButton) {
     button.addEventListener('click',playGame);
+    button.addEventListener('mouseenter',(e) => {
+        e.target.classList.add('hover');
+        console.log("hello");
+    });
+    button.addEventListener('mouseleave',(e) => {
+        e.target.classList.remove('hover');
+    })
 }
 
 restart.addEventListener('click',() => {
     playerScore = 0;
     computerScore = 0;
     scoreTally(playerScore,computerScore);
+    restart.setAttribute('style','display:none');
 });
 
 // plays game of rps

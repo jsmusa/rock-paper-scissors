@@ -9,6 +9,7 @@
 
 #player-box {
     border: 2px solid black;
+    border-radius: 12px;
     height: 150px;
     display: flex;
     justify-content: center;
@@ -18,6 +19,7 @@
 
 #score-box {
     border: 2px solid #000;
+    border-radius: 12px;
     height: 50px;
     display: flex;
     justify-content: center;
@@ -26,9 +28,13 @@
 }
 
 .rps-button {
-    border: 2px solid #000;
-    width: 105px;
-    border-radius: 48%;
+    border: 6px solid #d3d3d3;
+    background-color: #d3d3d3;
+    box-shadow: blue;
+    width: 104px;
+    border-radius: 50%;
+    display: flex;
+    transition: all .5s;
 }
 
 .rps-button img{
@@ -42,6 +48,13 @@
 
 #result-box {
     border: 2px solid #000;
+    border-radius: 10px;
     overflow: auto;
     height: 400px;
+}
+
+.hover {
+    transform: scale(1.2);
+    border-style: dashed;
+    border-color: #00FF00;
 }
