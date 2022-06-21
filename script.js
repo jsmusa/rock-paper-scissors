@@ -31,6 +31,7 @@ for (button of rpsButton) {
 restart.addEventListener('click',() => {
     playerScore = 0;
     computerScore = 0;
+    roundResult.textContent = '';
     scoreTally(playerScore,computerScore);
     restart.setAttribute('style','display:none');
 });
@@ -50,7 +51,6 @@ function playGame(e) {
             scoreTally(playerScore,computerScore);
         }
         showResult(move,computerMove,result);
-        console.log(playerScore,computerScore);
     } 
         // playBox.setAttribute ('style','display:none');
 }
@@ -95,7 +95,7 @@ function compare (playerSelection,computerSelection) {
 function showResult(playerMove,computerMove,result) {
         playerResult.textContent = 'You play ' + playerMove + '.';
         computerResult.textContent = 'Opponent plays '+ computerMove + '.';
-        roundResult.textContent = result;
+        roundResult.textContent = result.charAt(0).toUpperCase() + result.slice(1);
         resultBox.append(playerResult,computerResult,roundResult);
         //adds reset button when either player or computer scores 5
         if (playerScore === 5 || computerScore === 5) {
@@ -114,5 +114,8 @@ function scoreTally(playerScore, computerScore) {
 // adds reset button
 function addReset() {
     restart.textContent = 'Restart game';
+    roundResult.style.fontSize = '36px';
+    playerResult.textContent = '';
+    computerResult.textContent = '';
     resultBox.appendChild(restart);
 }
