@@ -20,12 +20,14 @@ cScore.className = 'computer-score';
 // use loop since rpsButton is a node list
 for (button of rpsButton) {
     button.addEventListener('click',playGame);
+    // add and remove effects when mouse hovers over buttons
     button.addEventListener('mouseenter',(e) => {
         e.target.classList.add('hover');
     });
     button.addEventListener('mouseleave',(e) => {
         e.target.classList.remove('hover');
     })
+    // add and remove effects when mouse is clicked down and up on buttons
     button.addEventListener('mousedown',(e) => {
         e.target.classList.add('click');
     })
@@ -34,6 +36,7 @@ for (button of rpsButton) {
     })
 }
 
+//restarts the game when the button is restart button is clicked
 restart.addEventListener('click',() => {
     playerScore = 0;
     computerScore = 0;
@@ -119,6 +122,7 @@ function scoreTally(playerScore, computerScore) {
 
 // adds reset button
 function addReset() {
+    restart.style.display = 'block';
     restart.textContent = 'Restart game';
     roundResult.style.fontSize = '36px';
     playerResult.textContent = '';
