@@ -7,6 +7,7 @@ const resultBox = document.getElementById('result-box');
 const playerResult = document.createElement('div');
 const computerResult = document.createElement('div');
 const roundResult = document.createElement('div');
+const reset = document.createElement('button');
 let pScore = document.createElement('div');
 let cScore = document.createElement('div');
 let playerScore = 0;
@@ -79,15 +80,10 @@ function compare (playerSelection,computerSelection) {
 
 // appends playerMove and computerMove onto resultBox
 function showResult(playerMove,computerMove,result) {
-    if (playerScore<5 && computerScore<5) {
         playerResult.textContent = 'You play ' + playerMove + '.';
         computerResult.textContent = 'Opponent plays '+ computerMove + '.';
         roundResult.textContent = result;
         resultBox.append(playerResult,computerResult,roundResult);
-    } else if (playerScore === 5) {
-        roundResult.textContent = result;
-        resultBox.appendChild(roundResult);
-    }
 }
 
 // appends score of both player and computer onto scoreBox 
