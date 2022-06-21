@@ -41,6 +41,7 @@ restart.addEventListener('click',() => {
     playerScore = 0;
     computerScore = 0;
     roundResult.textContent = '';
+    roundResult.style.fontSize = '16px';
     scoreTally(playerScore,computerScore);
     restart.setAttribute('style','display:none');
 });
@@ -51,7 +52,6 @@ function playGame(e) {
         let move = e.target.id;
         let computerMove = computerPlay();
         let result = compare(move,computerMove);
-        console.log(move, computerMove, result);
         if (result === 'victory') {
             playerScore++;
             scoreTally(playerScore,computerScore);
